@@ -7,7 +7,6 @@
   "text.autoconfig.flow.option.dashing.invincibility": "Invincibility",
   "text.autoconfig.flow.option.dashing.onGround": "On Ground",
   "text.autoconfig.flow.option.dashing.resetFall": "Reset Fall",
-  "text.autoconfig.flow.option.dashing.resetAttack": "Reset Attack",
   "text.autoconfig.flow.option.dashing.exhaustion": "Exhaustion",
 
   "key.flow.game": "Flow Actions",
