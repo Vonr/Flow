@@ -17,7 +17,7 @@ WIP: Should work on both clients and servers but untested on servers.
 
 ## Installation
 
-- Download a suitable version of the mod from [GitHub Releases](https://github.com/Vonr/Flow/releases) or Modrinth
+- Download a suitable version of the mod from [GitHub Releases](https://github.com/Vonr/Flow/releases) or [Modrinth](https://modrinth.com/mod/flow)
 - Download the latest release of Fabric API, Cloth Config API (Fabric) and ModMenu (optional) for 1.16.x
 - Put the downloaded files in your mods folder
 - Run the game
