@@ -22,7 +22,6 @@ public class Dash {
         if (player == null || (Flow.CONFIG.dashing.onGround && !player.isOnGround()) || !Flow.CONFIG.dashing.enabled) return;
 
         Vec3d rot = player.getRotationVector().normalize();
-        Flow.LOGGER.info(rot);
         Vec3d straightRot = rot.subtract(0.0, rot.y - (Flow.CONFIG.dashing.resetFall ? 0.00001 : 0.0), 0.0).normalize();
         player.setVelocity(straightRot.multiply(Flow.CONFIG.dashing.multiplier));
         player.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(player));
