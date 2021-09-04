@@ -4,16 +4,24 @@ A movement enhancing mod for 1.16 fabric.
 
 ## Status
 
-VERY WIP: Not expected to work on servers, should work on clients.
+WIP: Should work on both clients and servers but untested on servers.
 
 ## Features
 
-Dashing - Boosts you in the direction you're looking in, gives you 10 ticks of invincibility, and 30 ticks of cooldown.
+- Config - Using autoconfig1u and Cloth Config API and ModMenu.
+- Dashing - Boosts you in the direction you're looking in, gives you invincibility, and has a cooldown.
 
 ## Planned Features
 
-Config system.
+- More movement features
+
+## Installation
+
+- Download a suitable version of the mod from [GitHub Releases](https://github.com/Vonr/Flow/releases)
+- Download the latest release of Fabric API, Cloth Config API (Fabric) and ModMenu for 1.16.x
+- Put the downloaded files in your mods folder
+- Run the game
 
 ## License
 
-This template is available under the LGPL-3.0 license. 
+This mod is available under the LGPL-3.0 license. 

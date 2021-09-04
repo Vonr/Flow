@@ -1,33 +1,36 @@
 package me.qther.flow.actions;
 
-import me.qther.flow.Capabilities;
+import me.qther.flow.events.Capabilities;
+import me.qther.flow.init.Flow;
+import me.qther.flow.network.PacketIdentifiers;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
 public class Dash {
-    public static void dash(PlayerEntity player) {
-        if (player == null || !player.isOnGround()) return;
+    @Environment(EnvType.CLIENT)
+    public static void sendDash(PlayerEntity player) {
+        ClientPlayNetworking.send(PacketIdentifiers.DASH_PACKET_ID, PacketByteBufs.empty());
+    }
 
-//        Vec3d from = player.getPos();
+    public static void dash(ServerPlayerEntity player) {
+        if (player == null || (Flow.CONFIG.dashing.onGround && !player.isOnGround()) || !Flow.CONFIG.dashing.enabled) return;
+
         Vec3d rot = player.getRotationVector().normalize();
-        Vec3d straightRot = rot.subtract(0.0, rot.y, 0.0).normalize();
-//        Vec3d to = from.add(straightRot.multiply(3.0));
-//        HitResult hitResult = player.world.raycast(new RaycastContext(from, to, ShapeType.COLLIDER, FluidHandling.ANY, player));
-//        Flow.LOGGER.info(hitResult.getType());
-//        if (hitResult.getType() == Type.BLOCK) {
-//            player.updatePosition(hitResult.getPos().x, hitResult.getPos().y, hitResult.getPos().z);
-//        } else {
-//            player.updatePosition(to.x, to.y, to.z);
-//        }
-        // TODO: Config
-        player.setVelocity(straightRot.multiply(0.7));
-        player.setInvulnerable(true);
+        Flow.LOGGER.info(rot);
+        Vec3d straightRot = rot.subtract(0.0, rot.y - (Flow.CONFIG.dashing.resetFall ? 0.00001 : 0.0), 0.0).normalize();
+        player.setVelocity(straightRot.multiply(Flow.CONFIG.dashing.multiplier));
+        player.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(player));
         player.setNoGravity(true);
         player.setJumping(false);
-        player.addExhaustion(2F);
+        player.addExhaustion(Flow.CONFIG.dashing.exhaustion);
 
-        // Make player invincible for 10 ticks and adds 30 ticks of cooldown
-        Capabilities.INVINCIBLE.put(player, 10);
-        Capabilities.DASH_COOLDOWN.put(player, 30);
+        Capabilities.DASHING.put(player, Flow.CONFIG.dashing.ticks);
+        Capabilities.DASH_COOLDOWN.put(player, Flow.CONFIG.dashing.ticks + Flow.CONFIG.dashing.cooldown);
     }
 }

@@ -6,16 +6,22 @@
   "name": "Flow",
   "description": "Enhances movement",
   "authors": [
-    "Me!"
+    "Qther"
   ],
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/flow/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.qther.flow.Flow"
+      "me.qther.flow.init.Flow"
+    ],
+    "client": [
+      "me.qther.flow.init.Client"
+    ],
+    "modmenu": [
+      "me.qther.flow.config.ModMenuIntegration"
     ]
   },
   "mixins": [

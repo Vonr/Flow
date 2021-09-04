@@ -1,19 +1,19 @@
-package me.qther.flow;
+package me.qther.flow.events;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.entity.Entity;
 
 public class Capabilities {
-    public static Map<Entity, Integer> INVINCIBLE = new ConcurrentHashMap<>();
+    public static Map<Entity, Integer> DASHING = new ConcurrentHashMap<>();
     public static Map<Entity, Integer> DASH_COOLDOWN = new ConcurrentHashMap<>();
 
     public static void handleInvincibility() {
-        INVINCIBLE.forEach((entity, time) -> {
-            INVINCIBLE.put(entity, --time);
+        DASHING.forEach((entity, time) -> {
+            DASHING.put(entity, --time);
             if (--time <= 0) {
-                INVINCIBLE.remove(entity);
-                entity.setInvulnerable(false);
+                DASHING.remove(entity);
+//                entity.setInvulnerable(false);
                 entity.setNoGravity(false);
             }
         });

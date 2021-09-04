@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.flow.option.dashing": "Dashing",
+  "text.autoconfig.flow.option.dashing.enabled": "Enabled",
+  "text.autoconfig.flow.option.dashing.multiplier": "Multiplier",
+  "text.autoconfig.flow.option.dashing.ticks": "Ticks",
+  "text.autoconfig.flow.option.dashing.cooldown": "Cooldown",
+  "text.autoconfig.flow.option.dashing.invincibility": "Invincibility",
+  "text.autoconfig.flow.option.dashing.onGround": "On Ground",
+  "text.autoconfig.flow.option.dashing.resetFall": "Reset Fall",
+  "text.autoconfig.flow.option.dashing.resetAttack": "Reset Attack",
+  "text.autoconfig.flow.option.dashing.exhaustion": "Exhaustion",
+
+  "key.flow.game": "Flow Actions",
+  "key.flow.game.dash": "Dash"
+}
